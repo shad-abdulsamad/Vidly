@@ -22,10 +22,11 @@ name: {
     minlength: 5,
     maxlength: 255
   },
+  isAdmin:Boolean
 });
 
 userSchema.methods.generateAuthToken = function(){
-  const token = jwt.sign({_id:this.id}, 'jwtPrivateKey');
+  const token = jwt.sign({_id:this.id, isAdmin:this.isAdmin}, 'jwtPrivateKey');
   return token;
 }
 
